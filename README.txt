@@ -10,18 +10,32 @@ It has been tested on maemo/meego harmattan n950 and n9 ...
 The program is FLOSS and you can get the sources under GPL-3
 
 
+### SOURCES ###
+
+  git clone git@gitorious.org:redak/redak.git
+
+Backup places :
+
+  git clone git@github.com:harmattan/redak.git
+  git clone ssh://git@projects.developer.nokia.com/redak.git
+
+
 ### TODO ###
 
-see TODO.txt
+see TODO.txt or check open issues online
 
 
 ### NOTES ###
 
 check online
 
-http://rzr.online.fr/q/redak# [Announce] redak : text editor (Qt/QML, harmattan, n950, n9, opensource, GPL-3) 
+News:
 
-LocalThemeDaemonClient: Looking for assets in "/usr/local/opt/QtSDK/Simulator/Qt/gcc//harmattanthemes/blanco/meegotouch"
+[Announce] redak : text editor (Qt/QML, harmattan, n950, n9, opensource, GPL-3) 
+
+Redak #TextEditor @ #SymbiaN #BellE :
+http://store.nokia.com/content/273978
+http://store.ovi.mobi/content/273978
 
 
 ### THANKS ###
@@ -32,4 +46,3 @@ Testers :
 * <itsnotabigtruck> : n9
 * <Sniper_swe> : n9
 * <jonni> : symbian
-
