@@ -9,16 +9,18 @@ SOURCES += \
     redak.cpp \
     config.cpp
 
+
 HEADERS += \
     redak.h \
     config.h
 
 
-VERSION=0.6.3
+VERSION=0.6.4
 
+#TODO: is it actually used ?
 VER_MAJ=0
 VER_MIN=6
-VER_PAT=3
+VER_PAT=4
 
 
 # Additional import path used to resolve QML modules in Creators code model
