@@ -9,16 +9,18 @@ SOURCES += \
     redak.cpp \
     config.cpp
 
+
 HEADERS += \
     redak.h \
     config.h
 
 
-VERSION=0.6.3
+VERSION=0.6.4
 
+#TODO: is it actually used ?
 VER_MAJ=0
 VER_MIN=6
-VER_PAT=3
+VER_PAT=4
 
 
 # Additional import path used to resolve QML modules in Creators code model
@@ -117,11 +119,13 @@ unix {
       qtc_packaging/debian_fremantle/changelog \
   #
     } else { #meego/mer/nemo # rpm?
-
+qmlfiles.source = qml/redak
+qmlfiles.target = qml/
     }
 
   } else { # unix but not meego
-
+qmlfiles.source = qml/redak
+qmlfiles.target = qml/
   }
 
 } #else:
@@ -165,7 +169,6 @@ symbian {
 
   #OTHER_FILES += redak.pkg
 
-
 } else:android {
 
 
@@ -205,10 +208,12 @@ symbian {
     android/version.xml
 
 } else { #windows?
-
 }
 
+
+#TODO: check if actually needed
 DEPLOYMENTFOLDERS+=qmlfiles
+
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)

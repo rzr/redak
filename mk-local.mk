@@ -7,7 +7,7 @@ default: help
 
 package?=redak
 #version?=0.0.0
-version?=0.6.0
+version?=0.6.4
 
 
 #TODO: upgrade with yours
@@ -50,6 +50,10 @@ distclean: clean
 
 
 dist: distclean COPYING release rule/local/release
+
+
+ruke/diff:
+	git diff --ignore-space-at-eol
 
 
 rule/diff/common: qml/${package}/meego qml/${package}/common
@@ -97,9 +101,11 @@ debuild:distclean
 	fakeroot ./debian/rules binary
 	dpkg --contents ../*.deb
 
+
 dep/desktop:
 	${sudo} apt-get install \
 	  libqt4-declarative-folderlistmodel libqt4-dev
+
 
 dep/harmattan:
 	${sudo} apt-get install \
@@ -110,12 +116,14 @@ dep/harmattan:
 
 release: distclean rule/local/release
 
+
 rule/version:
 #	echo '${version}' | tee -a VERSION.txt
 	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'qml/redak/common/script.js'
 	sed -e "s/^[ ]*VERSION.*/VERSION=${version}/g" -i redak.pro
 	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
 	echo "# TODO: check debian/changelog *.changes *.pkg"
+	dch -i
 
 
 check/release:
