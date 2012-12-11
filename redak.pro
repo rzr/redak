@@ -4,6 +4,11 @@
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************/
 
+TEMPLATE = app
+
+#TEMPLATE = lib
+
+
 SOURCES += \
     main.cpp \
     redak.cpp \
@@ -25,10 +30,6 @@ VER_PAT=4
 
 # Additional import path used to resolve QML modules in Creators code model
 QML_IMPORT_PATH =
-
-TEMPLATE = app
-
-#TEMPLATE = lib
 
 INCLUDEPATH += /usr/include/applauncherd
 
@@ -96,9 +97,9 @@ unix {
     desktop.files = redak_harmattan.desktop
     desktop.path = /usr/share/applications/
 
-      DEFINES += Q_WS_HARMATTAN=1 
+    DEFINES+=Q_WS_HARMATTAN=1
 
-      OTHER_FILES += \
+    OTHER_FILES+=\
       debian/ \
       debian/control \
       debian/changelog \
@@ -119,11 +120,13 @@ unix {
       qtc_packaging/debian_fremantle/changelog \
   #
     } else { #meego/mer/nemo # rpm?
-
+    qmlfiles.source = qml/redak
+    qmlfiles.target = qml/
     }
 
   } else { # unix but not meego
-
+  qmlfiles.source = qml/redak
+  qmlfiles.target = qml/
   }
 
 } #else:
@@ -167,9 +170,7 @@ symbian {
 
   #OTHER_FILES += redak.pkg
 
-
 } else:android {
-
 
   OTHER_FILES += \
     android/res/values-zh-rCN/strings.xml \
@@ -207,10 +208,12 @@ symbian {
     android/version.xml
 
 } else { #windows?
-
 }
 
+
+#TODO: check if actually needed
 DEPLOYMENTFOLDERS+=qmlfiles
+
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)

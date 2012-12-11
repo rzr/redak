@@ -1,6 +1,5 @@
 * Sat Nov 24 2012 Philippe Coval <rzr@gna.org> - 0.6.4
-- fix: blank screen on :
-  nemo-handset-i586-0.20121101.1.NEMO.2012-11-08.1.img
+- Fixes NEMO#318: White screen on n900 shown when started
 
 * Sat Jul 24 2012 Philippe Coval <rzr@gna.org> - 0.6.2
 - cleanup spec file

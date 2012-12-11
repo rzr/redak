@@ -52,6 +52,10 @@ distclean: clean
 dist: distclean COPYING release rule/local/release
 
 
+ruke/diff:
+	git diff --ignore-space-at-eol
+
+
 rule/diff/common: qml/${package}/meego qml/${package}/common
 	meld $^
 
