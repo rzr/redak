@@ -1,35 +1,48 @@
+// Navigation pane project template
 import bb.cascades 1.0
 
 NavigationPane {
     id: navigationPane
     Page {
-        //-- page with a picture thumbnail
+        // page with a picture thumbnail
         Container {
-            layout: StackLayout {
-            }
-            Container {
-                //-- use expandable container above button to center button position verticaly
-                layoutProperties: StackLayoutProperties {
-                    spaceQuota: 1.0
-                }
+            background: Color.Black
+            layout: DockLayout {
             }
             Button {
-                text: qsTr ("Show detail")
+                horizontalAlignment: HorizontalAlignment.Center
+                verticalAlignment: VerticalAlignment.Center
+                text: qsTr("Show detail")
                 imageSource: "asset:///images/picture1thumb.png"
-                layoutProperties: StackLayoutProperties {
-                    horizontalAlignment: HorizontalAlignment.Center
-                }
                 onClicked: {
-                    //-- show detail page when the button is clicked
-                    navigationPane.deprecatedPushQmlByString("DetailPage.qml")
+                    // show detail page when the button is clicked
+                    var page = getSecondPage();
+                    console.debug("pushing detail " + page)
+                    navigationPane.push(page);
                 }
-            }
-            Container {
-                //-- use expandable container below button to center button position verticaly
-                layoutProperties: StackLayoutProperties {
-                    spaceQuota: 1.0
+                property Page secondPage
+                function getSecondPage() {
+                    if (! secondPage) {
+                        secondPage = secondPageDefinition.createObject();
+                    }
+                    return secondPage;
                 }
+                attachedObjects: [
+                    ComponentDefinition {
+                        id: secondPageDefinition
+                        source: "DetailsPage.qml"
+                    }
+                ]
             }
         }
+    }
+    onCreationCompleted: {
+        // this slot is called when declarative scene is created
+        // write post creation initialization here
+        console.log("NavigationPane - onCreationCompleted()");
+
+        // enable layout to adapt to the device rotation
+        // don't forget to enable screen rotation in bar-bescriptor.xml (Application->Orientation->Auto-orient)
+        OrientationSupport.supportedDisplayOrientation = SupportedDisplayOrientation.All;
     }
 }

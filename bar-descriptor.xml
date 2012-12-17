@@ -64,19 +64,20 @@
     
     <!--  The category where the application appears. Either core.games or core.media. -->
     <category>core.games</category>
-    <configuration id="com.qnx.qcc.toolChain.121788015" name="Default">
+    <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/redak" entry="true" type="Qnx/Elf">redak</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.toolChain.287432269" name="Device-Debug">
+    <configuration name="Device-Release">
+       <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7-g/redak" entry="true" type="Qnx/Elf">redak</asset>
+       <asset path="arm/o.le-v7/redak.so" entry="true" type="Qnx/Elf">redak.so</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.toolChain.1681112777" name="Device-Release">
+    <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7/redak" entry="true" type="Qnx/Elf">redak</asset>
+       <asset path="arm-p/o.le-v7-g/redak" entry="true" type="Qnx/Elf">redak</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.toolChain.1503273542" name="Simulator-Debug">
+    <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="x86/o-g/redak" entry="true" type="Qnx/Elf">redak</asset>
     </configuration>
@@ -88,8 +89,6 @@
 
     <asset path="icon.png">icon.png</asset>
     <asset path="assets">assets</asset>
-    <!--  The splash screen that will appear when your application is launching. Should be 1024x600. -->
-    <!-- <splashscreen></splashscreen> -->
     
     <!-- Locale support -->
     <asset path="translations" dest="qm">
@@ -97,18 +96,7 @@
     </asset>
     
     <!-- Request permission to execute native code.  Required for native applications. -->
-    <action system="true">run_native</action>
+    <permission system="true">run_native</permission>
     <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
-
-    <!--  The permissions requested by your application. -->
-    <!--  <action>access_shared</action> -->
-    <!--  <action>record_audio</action> -->
-    <!--  <action>read_geolocation</action> -->
-    <!--  <action>use_camera</action> -->
-    <!--  <action>access_internet</action> -->
-    <!--  <action>play_audio</action> -->
-    <!--  <action>post_notification</action> -->
-    <!--  <action>set_audio_volume</action> -->
-    <!--  <action>read_device_identifying_information</action> -->
 
 </qnx>
