@@ -30,7 +30,7 @@ NavigationPane {
                 attachedObjects: [
                     ComponentDefinition {
                         id: secondPageDefinition
-                        source: "DetailsPage.qml"
+                        source: "EditPage.qml"
                     }
                 ]
             }
