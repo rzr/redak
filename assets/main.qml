@@ -1,45 +1,53 @@
-// Navigation pane project template
+// Tabbed Pane project template
 import bb.cascades 1.0
 
-NavigationPane {
-    id: navigationPane
-    Page {
-        // page with a picture thumbnail
-        Container {
-            background: Color.Black
-            layout: DockLayout {
-            }
-            Button {
-                horizontalAlignment: HorizontalAlignment.Center
-                verticalAlignment: VerticalAlignment.Center
-                text: qsTr("Show detail")
-                imageSource: "asset:///images/picture1thumb.png"
-                onClicked: {
-                    // show detail page when the button is clicked
-                    var page = getSecondPage();
-                    console.debug("pushing detail " + page)
-                    navigationPane.push(page);
-                }
-                property Page secondPage
-                function getSecondPage() {
-                    if (! secondPage) {
-                        secondPage = secondPageDefinition.createObject();
+TabbedPane {
+    showTabsOnActionBar: true
+    Tab {
+        title: qsTr("Tab 1")
+        EditPage {}
+        }
+    Tab {
+        title: qsTr("Tab 2")
+		//Page{} //
+		BrowsePage{}
+    }
+    Tab {
+        title: qsTr("Tab 3")
+        Page {
+            id: tab3
+            Container {
+                // define tab content here
+                Label {
+                    text: qsTr("Tab 3 title")
+                    horizontalAlignment: HorizontalAlignment.Center
+                    textStyle {
+                        base: SystemDefaults.TextStyles.TitleText
                     }
-                    return secondPage;
                 }
-                attachedObjects: [
-                    ComponentDefinition {
-                        id: secondPageDefinition
-                        source: "EditPage.qml"
+                Container {
+                    layout: DockLayout { }
+                    layoutProperties: StackLayoutProperties {
+                        spaceQuota: 1.0
                     }
-                ]
+                    verticalAlignment: VerticalAlignment.Fill
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    Label {
+                        text: qsTr ("Tab 3 content")
+                        verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Center
+                        textStyle {
+                            base: SystemDefaults.TextStyles.BodyText
+                        }
+                    }
+                }
             }
         }
     }
     onCreationCompleted: {
         // this slot is called when declarative scene is created
         // write post creation initialization here
-        console.log("NavigationPane - onCreationCompleted()");
+        console.log("TabbedPane - onCreationCompleted()")
 
         // enable layout to adapt to the device rotation
         // don't forget to enable screen rotation in bar-bescriptor.xml (Application->Orientation->Auto-orient)

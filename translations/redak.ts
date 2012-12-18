@@ -50,8 +50,28 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="15"/>
-        <source>Show detail</source>
+        <location filename="../assets/main.qml" line="7"/>
+        <source>Tab 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="11"/>
+        <source>Tab 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="16"/>
+        <source>Tab 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="22"/>
+        <source>Tab 3 title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="36"/>
+        <source>Tab 3 content</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
