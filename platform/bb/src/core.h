@@ -10,6 +10,7 @@
 #include <QDeclarativeItem>
 #include <QDeclarativeExtensionPlugin>
 
+
 class Core
 : public QDeclarativeItem
 //: public QDeclarativeExtensionPlugin

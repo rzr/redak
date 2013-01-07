@@ -146,6 +146,10 @@ platform/bb/assets/images/picture1br.png:    PNG image data, 300 x 250, 8-bit/co
 platform/bb/assets/images/picture1.png:      PNG image data, 300 x 250, 8-bit/color RGBA, non-interlaced
 platform/bb/assets/images/picture1thumb.png: PNG image data, 80 x 80, 8-bit/color RGBA, non-interlaced
 
+
+home/rzr/bbndk/host_10_0_9_404/linux/x86/usr/bin/blackberry-deploy -installApp -password ${password}  -device ${host}  -package  /tmp/tmp.bar
+
+
 ### PLATFORM / WINDOWS ###
 
 Q: QtCreator complain this it can not write *.user : Disk full ?

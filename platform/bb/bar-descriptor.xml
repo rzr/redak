@@ -39,7 +39,7 @@
 
     <!-- Fourth digit segment of the package version. First three segments are taken from the 
          <versionNumber> element.  Must be an integer from 0 to 2^16-1 -->
-    <buildId>1</buildId>
+    <buildId>2</buildId>
                  
     <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
     <!-- <versionLabel></versionLabel> -->
@@ -55,6 +55,7 @@ Libre Text Editor for touchscreens
 
     <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
     <author>rzr</author>
+    <authorId>gYAAgDSpJdvC-tZlvIkvtleDNrE</authorId>
     
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
     <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
@@ -65,7 +66,11 @@ Libre Text Editor for touchscreens
     </initialWindow>
     
     <!--  The category where the application appears. Either core.games or core.media. -->
-    <category>core.games</category>
+    <category>core.media</category>
+    
+    <!-- TODO: disable if not allowed -->
+    
+    
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/redak" entry="true" type="Qnx/Elf">redak</asset>
@@ -99,9 +104,9 @@ Libre Text Editor for touchscreens
     
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>
-    
-    <permission system="true">access_shared</permission>
-    
+    <permission>access_shared</permission>
+
+
     <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
 
 </qnx>
