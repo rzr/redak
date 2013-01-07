@@ -5,13 +5,11 @@
 
 #include "config.h"
 
-
-#include "redak.h"
-
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
 
+#include "redak.h"
 
 
 using namespace bb::cascades;

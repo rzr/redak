@@ -8,6 +8,7 @@
 
 #include <QObject>
 
+
 namespace bb { namespace cascades { class Application; }}
 
 /*!
@@ -15,7 +16,8 @@ namespace bb { namespace cascades { class Application; }}
  *
  *Use this object to create and init app UI, to create context objects, to register the new meta types etc.
  */
-class Redak : public QObject
+class Redak
+: public QObject
 {
     Q_OBJECT
 public:

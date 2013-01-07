@@ -7,7 +7,7 @@ default: help
 
 package?=redak
 #version?=0.0.0
-version?=0.6.4
+version?=0.7.0
 
 
 #TODO: upgrade with yours
@@ -50,6 +50,11 @@ distclean: clean
 	chmod -Rv a+rX .
 	rm -fv *.pkg
 	rm -fv *.autosave
+
+
+rule/perm:
+	sudo chown -Rv ${USER} .
+	chmod -Rv u+rwX .
 
 
 dist: distclean COPYING release rule/local/release

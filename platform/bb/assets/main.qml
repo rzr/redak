@@ -24,6 +24,7 @@ NavigationPane {
                 parent.isChanged = true;
                 appWindow.mode = 1;
             }
+            inputMode: TextAreaInputMode.Text
         }
         onCreationCompleted: {
             setText(Script.g_info);

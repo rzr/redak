@@ -13,15 +13,16 @@ var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 var g_color_border = "gray";
 
-var g_version = "0.6.4" ;
+var g_version = "0.7.0";
 
-var g_info = "redak : text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
+var g_info = "redak : libre text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
 
 
 function log(text)
 {
     if ( g_verbose ) {
         console.log(text);
+        //editPage.text += "\nlog: " + (text) + "\n"; //todo
     }
 }
 
@@ -48,7 +49,7 @@ function loadUrl(filename)
     loader.onreadystatechange = function() {
                 if (XMLHttpRequest.DONE == loader.readyState ) {
                     textView.text = loader.responseText;
-                } }
+                } };
     loader.send();
 }
 
@@ -63,25 +64,27 @@ function handleFolderChanged(path)
 function handlePath(filepath)
 {
     var res = true;
-    var filename = "unknown.txt"
-    var content = appWindow.filepath;
+    var filename = "unknown.txt";
+    var text = editPage.filepath;
     if ( null != filepath ) { filename = filepath; }
 
-    log("log: Script.handlePath: io: mode="+ appWindow.mode + " path=" +  filename );
+    log("Script.handlePath: io: mode="+ appWindow.mode + " path=" +  filename );
 
     if ( 1 == appWindow.mode ) {
-        content = editPage.content;
-        res &= redak.save( content, filename );
+        log("saving:" + filename );
+        text = editPage.text;
+        res &= core.save( text, filename );
         appWindow.filePath = filename;
 
     } else {
         //platformCloseSoftwareInputPanel(); //TODO
-        content = redak.load( filename );
-        editPage.setContents(content); //todo
+        text = redak.load( filename );
+        editPage.setContents(text); //todo
         appWindow.filePath = filename;
     }
 
     //editPage.listView.focus = true;
     if ( res ) { pageStack.pop(); }
+
     return res;
 }

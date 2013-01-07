@@ -11,7 +11,6 @@
 #include "redak.h"
 
 
-
 Redak::Redak(QDeclarativeItem *parent)
 : QDeclarativeItem(parent)
 //: QDeclarativeExtensionPlugin(parent)

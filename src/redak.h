@@ -10,6 +10,7 @@
 #include <QDeclarativeItem>
 #include <QDeclarativeExtensionPlugin>
 
+
 class Redak
 : public QDeclarativeItem
 //: public QDeclarativeExtensionPlugin

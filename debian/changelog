@@ -1,3 +1,9 @@
+redak (0.7.0-0) UNRELEASED; urgency=low
+
+  * Wip: bb10 / rim
+
+ -- Philippe Coval <rzr@gna.org>  Mon, 07 Jan 2013 22:18:26 +0100
+
 redak (0.6.4-0) lucid; urgency=low
 
   * Wip: nemomobile

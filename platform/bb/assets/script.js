@@ -22,7 +22,7 @@ function log(text)
 {
     if ( g_verbose ) {
         console.log(text);
-        editPage.text += "\nlog: " + (text) + "\n"; //todo
+        //editPage.text += "\nlog: " + (text) + "\n"; //todo
     }
 }
 
@@ -56,7 +56,7 @@ function loadUrl(filename)
 
 function handleFolderChanged(path)
 {
-    //console.log("handleFolderChanged: "+path);
+    log("handleFolderChanged: "+path);
     editPage.folderPath=path;
     //appWindow.folderPath=path;
 }
