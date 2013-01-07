@@ -31,3 +31,4 @@ signals:
 };
 
 #endif // REDAK_H
+

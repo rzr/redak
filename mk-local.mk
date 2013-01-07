@@ -1,5 +1,5 @@
 #! /usr/bin/make -f
-#* #ident "$Id: $"
+ #ident "$Id: $"
 #* @author: rzr@gna.org - rev: $Author: rzr$
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************
@@ -14,6 +14,9 @@ version?=0.6.4
 #qtcreator?=/usr/local/opt/QtSDK/QtCreator/bin/qtcreator
 qtcreator?=qtcreator
 
+setup:mk-local.mk
+	@echo "include $<" > Makefile
+	zypper install qt-creator
 
 help:
 	@echo "edit"
@@ -139,6 +142,12 @@ rule/local/%:
 redak64.png: redak.svg  mk-local.mk
 	convert -resize 64x64  $< $@
 
+
+redak90.png: redak.svg  mk-local.mk
+	convert -resize 90x90  $< $@
+	mv redak90.png platform/bb/icon.png
+
+
 convert/%: redak.svg  mk-local.mk
 	convert -resize ${@F}x${@F}  $< tmp-${@F}.png
 
@@ -162,6 +171,17 @@ rule/install/platform/symbian: qml
 	md5sum *.sis | tee -a README.txt
 	@echo "todo: upload: redak_installer_unsigned.sis"
 	@echo "todo: https://publish.nokia.com/download_items/show/475539#item"
+
+
+rule/diff/platform/bb: platform/bb
+	meld . $<
+	meld qml/redak/meego/ $</assets/
+	meld qml/redak/common/ $</assets/
+
+
+rule/clean/platform/bb: platform/bb
+	rm -rfv $</x86
+	rm -rfv $</arm
 
 
 -include ~/bin/mk-local.mk

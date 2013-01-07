@@ -1,5 +1,5 @@
 Package: redak
-Description: Libre Text editor for touchscreen
+Description: Libre Text Editor for touchscreens
 URL: http://rzr.online.fr/q/redak
 Contact: Philippe Coval <rzr@gna.org>
 

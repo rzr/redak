@@ -4,7 +4,9 @@
  *****************************************************************************/
 
 #include "config.h"
+
 #include <QtGui/QApplication>
+
 #include "qmlapplicationviewer.h"
 #include "redak.h"
 

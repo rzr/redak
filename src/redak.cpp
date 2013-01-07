@@ -5,9 +5,11 @@
 
 #include "config.h"
 
-#include "redak.h"
 #include <QtPlugin>
 #include <QProcess>
+
+#include "redak.h"
+
 
 
 Redak::Redak(QDeclarativeItem *parent)

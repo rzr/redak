@@ -55,7 +55,7 @@
 ** TODO : http://doc.qt.nokia.com/4.7-snapshot/qdeclarativemodules.html
 
 
-x### FEATURES ###
+### FEATURES ###
 
 <ZogG_laptop> rzr: btw why in load it shows all types of files including jpg and it would be nice to have title with filename or something and maybe line numbers
 
@@ -137,6 +137,14 @@ icon-m-common-directory.png
 
 /tmp/tmp-rzr.tmp/var/lib/disk.sh.dir/tmp/mnt/uri/ssh/root/tbt.wan/usr/share/themes/blanco/meegotouch/icons/icon-s-common-remove.png
 
+
+### PLATFORM / BB ###
+
+platform/bb/icon.png: PNG image data, 90 x 90, 8-bit/color RGBA, non-interlaced
+
+platform/bb/assets/images/picture1br.png:    PNG image data, 300 x 250, 8-bit/color RGBA, non-interlaced
+platform/bb/assets/images/picture1.png:      PNG image data, 300 x 250, 8-bit/color RGBA, non-interlaced
+platform/bb/assets/images/picture1thumb.png: PNG image data, 80 x 80, 8-bit/color RGBA, non-interlaced
 
 ### PLATFORM / WINDOWS ###
 
