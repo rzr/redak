@@ -131,6 +131,8 @@ convert -resize 57x57  $s   ./platform/bb/assets/$n.png
 home/rzr/bbndk/host_10_0_9_404/linux/x86/usr/bin/blackberry-deploy -installApp -password ${password}  -device ${host}  -package  /tmp/tmp.bar
 
 
+"tva non applicable - article 293b du CGI"
+
 
 ### PLATFORM / WINDOWS ###
 
