@@ -7,7 +7,7 @@ default: help
 
 package?=redak
 #version?=0.0.0
-version?=0.7.0
+version?=0.7.1
 
 
 #TODO: upgrade with yours
@@ -33,6 +33,7 @@ rule/android/edit: clean
 rule/android/configure:
 	/usr/local/opt/android-sdk-linux/tools/android  update project -t android-7 -p android
 
+
 clean:
 	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile
 	-cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
@@ -42,12 +43,13 @@ distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
 	rm -rvf *.user *.zip *.sis *~ *.so *.tmp
 	rm -rvf obj ./android/bin android/assets/qml/redak android/libs/armeabi
+	chmod -Rv a+rX .
+	chmod -Rv u+rwX .
 	find . -iname "*~" -exec rm -v '{}' \;
 	find . -iname "*.class" -exec rm -v '{}' \;
 	find . -iname "*.apk" -exec rm -v '{}' \;
-	chmod a-rx *.cpp *.h *.pro *.png *.svg *.spec *.txt
-	chmod a-rx COPYING
-	chmod -Rv a+rX .
+	chmod o-rx src/*.cpp src/*.h *.pro *.png *.svg *.spec *.txt
+	chmod o-rx COPYING
 	rm -fv *.pkg
 	rm -fv *.autosave
 
@@ -128,6 +130,7 @@ release: distclean rule/local/release
 rule/version:
 #	echo '${version}' | tee -a VERSION.txt
 	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'qml/redak/common/script.js'
+	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'platform/bb/assets/script.js'
 	sed -e "s/^[ ]*VERSION.*/VERSION=${version}/g" -i redak.pro
 	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
 	echo "# TODO: check debian/changelog *.changes *.pkg"
@@ -182,6 +185,13 @@ rule/diff/platform/bb: platform/bb
 	meld . $<
 	meld qml/redak/meego/ $</assets/
 	meld qml/redak/common/ $</assets/
+
+
+rule/install/platform/bb:
+	find  platform/bb/ -iname "*.bar"
+#	platform/bb/arm/o.le-v7-g/redak.bar
+#	platform/bb/arm/o.le-v7/redak-0_7_1_0.bar
+
 
 
 rule/clean/platform/bb: platform/bb

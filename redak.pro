@@ -20,7 +20,7 @@ HEADERS += \
     src/config.h
 
 
-VERSION=0.7.0
+VERSION=0.7.1
 
 #TODO: is it actually used ?
 VER_MAJ=0

@@ -13,7 +13,7 @@ var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 var g_color_border = "gray";
 
-var g_version = "0.7.0";
+var g_version = "0.7.1" ;
 
 var g_info = "redak : libre text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
 

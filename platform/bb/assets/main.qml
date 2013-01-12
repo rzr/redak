@@ -4,6 +4,7 @@
  *****************************************************************************/
 import bb.cascades 1.0
 import bb.cascades.pickers 1.0
+import bb.system 1.0
 import "./script.js" as Script
 import Core 1.1
 
@@ -12,25 +13,29 @@ NavigationPane {
     property int mode_load: 0 //Picker==0
     property int mode_save: 1 //Saver==1
     property int mode: 0
-    property string filePath: "default.txt"
+    property string filePath: "note.txt"
     Page {
         id: editPage
         content: TextArea {
             id: textArea
-            text: Script.g_info //toDebugString()
+            property int position: 0
+            editable: true
+            text: (! Script.g_debug ) ? Script.g_info : toDebugString() // TODO
             preferredWidth: parent.preferredWidth - 10
             preferredHeight: parent.preferredHeight - 10
+            inputMode: TextAreaInputMode.Text
             onTextChanging: {
                 parent.isChanged = true;
                 appWindow.mode = 1;
             }
-            inputMode: TextAreaInputMode.Text
-        }
-        onCreationCompleted: {
-            setText(Script.g_info);
+            opacity: 1.0
+            scaleX: 1.0
+            scaleY: 1.0
+
+            //editor.onSelectionEndChanged:  position = editor.selectionEnd; //TODO: BUG?
         }
         property alias text: textArea.text
-        property alias isEdit: textArea.editable
+        property alias editable: textArea.editable
         property bool isChanged: false
         function setText(text) {
             editPage.text = text;
@@ -55,57 +60,143 @@ NavigationPane {
                     Button {
                         horizontalAlignment: HorizontalAlignment.Center
                         verticalAlignment: VerticalAlignment.Bottom
-                        text: "back"
+                        text: qsTr("back")
                         onClicked: aboutDialog.close()
                     }
                 }
             },
             FilePicker {
                 id: filePicker
-                type: FileType.Document | FileType.Other
-                title: "Select file"
+                type: FileType.Other //| FileType.Document
+                title: qsTr("Select file")
                 directories: [
                     "/"
                 ]
                 onFileSelected: {
-                    Script.handlePath(selectedFiles[0]);
+                    filePath = selectedFiles[0];
+                    Script.handlePath(filePath);
+                }
+            },
+            SystemDialog {
+                id: quitDialog
+                title: qsTr("Quit?")
+                body: qsTr("Please confirm, your changes will be lost")
+                onFinished: {
+                    console.log("quitDialog: " + result);
+                    if (SystemUiResult.ConfirmButtonSelection == result) {
+                        Application.quit();
+                    }
+                }
+            },
+            SystemDialog {
+                id: ioDialog
+                title: qsTr("IO Operation ?")
+                body: qsTr("Please confirm, your changes will be lost")
+                onFinished: {
+                    if (SystemUiResult.ConfirmButtonSelection == result) {
+                        filePicker.open();
+                    }
+                }
+            },
+            SystemDialog {
+                id: newDialog
+                title: qsTr("New Operation ?")
+                body: qsTr("Please confirm, your changes will be lost")
+                onFinished: {
+                    if (SystemUiResult.ConfirmButtonSelection == result) {
+                        editPage.text = "";
+                        appWindow.filePath == "";
+                    }
+                }
+            },
+            SystemPrompt {
+                id: findDialog
+                title: qsTr("Find string ?")
+                body: qsTr("will select the text, check to not replace it")
+                modality: SystemUiModality.Application
+                inputField.inputMode: SystemUiInputMode.Default
+                inputField.defaultText: qsTr("TODO")
+                //includeRememberMe: true //WORKAROUND
+                //rememberMeChecked: true
+                onFinished: {
+                    if (result == SystemUiResult.ConfirmButtonSelection) {
+                        var p = textArea.position; //WORKAROUND
+                        var e = 0;
+                        var s = findDialog.inputFieldTextEntry();
+                        var editor = textArea.editor;
+                        //p = editor.cursorPosition();
+                        //p = editor.selectionEnd(); //TODO BUG
+                        if (p < 0) p = 0;
+                        if (null != editPage.text) {
+                            p = editPage.text.indexOf(s, p);
+                            if (p >= 0) {
+                                e = p + s.length;
+                                editor.setSelection(p, e);
+                            } else {
+                                p = e = 0;
+                                editor.setSelection(p, e);
+                            }
+                            textArea.position = e;
+                        }
+                        inputField.defaultText = s; //TODO: WORKAROUND
+                    }
                 }
             }
         ]
         actions: [
             ActionItem {
-                title: "Quit"
+                title: qsTr("Quit")
                 ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///quit.png"
                 onTriggered: {
-                    Application.quit();
+                    quitDialog.show();
                 }
             },
             ActionItem {
-                title: "R/W"
-                onTriggered: isEdit = ! isEdit
+                title: (textArea.editable ) ? qsTr("View") : qsTr("Edit")
                 ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///view.png"
+                onTriggered: textArea.editable = ! textArea.editable
             },
             ActionItem {
-                title: "Load"
+                title: qsTr("Find")
                 ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///find.png"
+                onTriggered: findDialog.show()
+            },
+            ActionItem {
+                title: qsTr("Load")
+                ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///load.png"
                 onTriggered: {
                     appWindow.mode = 0; //TODO
                     filePicker.mode = appWindow.mode;
-                    filePicker.open();
+                    if (editPage.isChanged) {
+                        ioDialog.show();
+                    } else {
+                        filePicker.open();
+                    }
                 }
             },
             ActionItem {
-                title: "Save"
+                title: qsTr("Save")
                 ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///save.png"
                 onTriggered: {
                     appWindow.mode = 1;
-                    Script.handlePath(appWindow.filePath);
-                    appWindow.mode = 0;
+                    if ("" != appWindow.filePath) {
+                        Script.handlePath(appWindow.filePath);
+                    } else {
+                        appWindow.mode = 1; //TODO
+                        filePicker.mode = appWindow.mode; //TOOD
+                        filePicker.open();
+                    }
                 }
             },
             ActionItem {
-                title: "Save As"
+                title: qsTr("Save As")
                 ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///save-as.png"
                 onTriggered: {
                     appWindow.mode = 1; //TODO
                     filePicker.mode = appWindow.mode; //TOOD
@@ -113,13 +204,29 @@ NavigationPane {
                 }
             },
             ActionItem {
-                title: "About"
+                title: qsTr("New")
                 ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///new.png"
+                onTriggered: {
+                    appWindow.mode = 0; //TODO
+                    filePicker.mode = appWindow.mode;
+                    if (editPage.isChanged) {
+                        newDialog.show();
+                    } else {
+                        editPage.text = "";
+                        appWindow.filePath = "";
+                    }
+                }
+            },
+            ActionItem {
+                title: qsTr("About")
+                ActionBar.placement: ActionBarPlacement.OnBar
+                imageSource: "asset:///about.png"
                 onTriggered: {
                     //aboutDialog.open(); //TODO: cleanup
                     editPage.setText(Script.g_info);
                 }
-            }            
+            }
         ]
     }
 }

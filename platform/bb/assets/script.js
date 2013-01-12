@@ -3,19 +3,22 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 
-var g_font_pixelSize = 26;
+var g_package = "redak";
 
-var g_verbose = false;
+var g_version = "0.7.1" ;
+
+var g_info = g_package + " : libre text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
+
+var g_debug = false;
+var g_verbose = g_debug;
+
+var g_font_pixelSize = 26;
 
 /// http://doc.qt.nokia.com/qt-components-symbian/qml-style.html
 var g_color_normal = "#00AAAAAA";
 var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 var g_color_border = "gray";
-
-var g_version = "0.7.0";
-
-var g_info = "redak : libre text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
 
 
 function log(text)
@@ -76,14 +79,18 @@ function handlePath(filepath)
         text = editPage.text;
         res &= core.save( text, filename );
         appWindow.filePath = filename;
+        appWindow.mode = 0;
 
     } else {
         log("loading:" + filename );
     	text = core.load( filename );
         editPage.setText(text); //todo
         appWindow.filePath = filename;
+        appWindow.mode = 1;
+        editPage.textArea.editor.setSelection(0.0);
     }
 
+    editPage.isChanged = false;
     //editPage.listView.focus = true;
     if ( res ) { /*appWindow.*/ pageStack.pop(); }
 
