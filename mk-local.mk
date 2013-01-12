@@ -35,14 +35,14 @@ rule/android/configure:
 
 
 clean:
-	rm -rf  ../redak-build-* *.o moc_*.cpp *~ Makefile
+	rm -rf  ../${package}-build-* *.o moc_*.cpp *~ Makefile
 	-cat 'debian/clean' | while read t ; do rm -rv "$${t}" ; done
 
 
 distclean: clean
 	cat debian/clean.txt | while read t ; do rm -rfv "$${t}" ; done
 	rm -rvf *.user *.zip *.sis *~ *.so *.tmp
-	rm -rvf obj ./android/bin android/assets/qml/redak android/libs/armeabi
+	rm -rvf obj ./android/bin android/assets/qml/${package} android/libs/armeabi
 	chmod -Rv a+rX .
 	chmod -Rv u+rwX .
 	find . -iname "*~" -exec rm -v '{}' \;
@@ -84,7 +84,7 @@ diff: qml/${package}/meego qml/${package}/symbian
 
 install:
 	-ls ../${package}*/*.sis
-	-ls ../redak-build-remote/redak_qt-4_7_4_symbianBelle.sis
+	-ls ../${package}-build-remote/${package}_qt-4_7_4_symbianBelle.sis
 	ln -fs $(pwd)/../*/*.sis ~/public_html/pub/file/
 
 deploy:
@@ -129,17 +129,17 @@ release: distclean rule/local/release
 
 rule/version:
 #	echo '${version}' | tee -a VERSION.txt
-	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'qml/redak/common/script.js'
-	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i 'platform/bb/assets/script.js'
-	sed -e "s/^[ ]*VERSION.*/VERSION=${version}/g" -i redak.pro
-	sed -e "s/^Version:.*/Version: ${version}/g" -i redak.spec
+	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i "qml/${package}/common/script.js"
+	sed -e "s/^var g_version.*/var g_version = \"${version}\" ;/g" -i "platform/bb/assets/script.js"
+	sed -e "s/^[ ]*VERSION.*/VERSION=${version}/g" -i ${package}.pro
+	sed -e "s/^Version:.*/Version: ${version}/g" -i ${package}.spec
 	echo "# TODO: check debian/changelog *.changes *.pkg"
 	dch -i
 
 
 check/release:
 	@echo "# check version in script.js debian/changelog "
-	grep -r -i 'g_version' qml/redak/common/script.js
+	grep -r -i 'g_version' qml/${package}/common/script.js
 	grep 'Version:' ${package}.spec
 
 
@@ -147,20 +147,20 @@ rule/local/%:
 	echo "todo: $@"
 
 
-redak64.png: redak.svg  mk-local.mk
+${package}64.png: ${package}.svg  mk-local.mk
 	convert -resize 64x64  $< $@
 
 
-redak90.png: redak.svg  mk-local.mk
+${package}90.png: ${package}.svg  mk-local.mk
 	convert -resize 90x90  $< $@
-	mv redak90.png platform/bb/icon.png
+	mv ${package}90.png platform/bb/icon.png
 
 
-convert/%: redak.svg  mk-local.mk
+convert/%: ${package}.svg  mk-local.mk
 	convert -resize ${@F}x${@F}  $< tmp-${@F}.png
 
 
-icon.txt.tmp: redak.svg  mk-local.mk
+icon.txt.tmp: ${package}.svg  mk-local.mk
 	convert -resize 26x26  $< tmp.png
 	base64 < tmp.png | tr -d '\n' > $@
 	wc $@
@@ -177,21 +177,21 @@ rule/build/platform/symbian: qml
 rule/install/platform/symbian: qml
 	grep DEPLOY_TARGET bld.inf 
 	md5sum *.sis | tee -a README.txt
-	@echo "todo: upload: redak_installer_unsigned.sis"
+	@echo "todo: upload: ${package}_installer_unsigned.sis"
 	@echo "todo: https://publish.nokia.com/download_items/show/475539#item"
 
 
 rule/diff/platform/bb: platform/bb
 	meld . $<
-	meld qml/redak/meego/ $</assets/
-	meld qml/redak/common/ $</assets/
+	meld qml/${package}/meego/ $</assets/
+	meld qml/${package}/common/ $</assets/
 
 
-rule/install/platform/bb:
+rule/install/platform/bb: ${package}.svg  mk-local.mk
 	find  platform/bb/ -iname "*.bar"
-#	platform/bb/arm/o.le-v7-g/redak.bar
-#	platform/bb/arm/o.le-v7/redak-0_7_1_0.bar
-
+#	platform/bb/arm/o.le-v7-g/${package}.bar
+#	platform/bb/arm/o.le-v7/${package}-0_7_1_0.bar
+	convert -resize 480x480  $< ${package}-480.png
 
 
 rule/clean/platform/bb: platform/bb
