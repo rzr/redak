@@ -42,3 +42,5 @@ x86
 arm
 MANIFEST
 #*.autosave
+arm-p
+.#*
