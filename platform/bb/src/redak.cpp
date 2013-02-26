@@ -5,13 +5,15 @@
 
 #include "config.h"
 
-#include <bb/cascades/Application>
-#include <bb/cascades/QmlDocument>
-#include <bb/cascades/AbstractPane>
+#ifdef Q_OS_BLACKBERRY
+# include <bb/cascades/Application>
+# include <bb/cascades/QmlDocument>
+# include <bb/cascades/AbstractPane>
+#endif
 
 #include "redak.h"
 
-
+#ifdef Q_OS_BLACKBERRY
 using namespace bb::cascades;
 
 
@@ -27,3 +29,5 @@ Redak::Redak(bb::cascades::Application *app)
     // set created root object as a scene
     app->setScene(root);
 }
+#endif
+

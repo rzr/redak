@@ -86,6 +86,17 @@ QString Core::load(QString filename)
           QTextStream stream( &file );
           content = stream.readAll();
           file.close();
+
+#if 0
+          QString head(
+        		  "# http://rzr.online.fr/q/redak\n"
+        		  "# file edited with demo version of redak\n"
+        		  "# Please support author, by purchasing full version\n\n"
+        		  );
+          content = content.remove(head);
+          content = content.prepend(head);
+#endif
+
           emit loaded(content);
         }
     } else {

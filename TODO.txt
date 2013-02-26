@@ -2,24 +2,28 @@
 
 * TODO [#A] Tasks : Unclassed :
 * TODO [#A] Tasks : Platform : BB
-** TODO [#A] : publish , vat, sshot
-** TODO [#A] : about dialog
-** TODO [#B] : Test DONE tasks
-*** DONE [#C] : new document : done bb
-* TODO [#A] Tasks : Platform : Others 
-** TODO [#A] : ubuntu
-** TODO [#A] : qt5 
-** TODO [#A] : playbook
-** TODO [#B] : lighthouse port android/nescessitas
-** TODO [#C] : lighthouse port iOS
+** TODO [#B] : publish , vat, sshot
+** TODO [#B] : about dialog
+** TODO [#A] : merge into topdir
+ln -fs platform/bb/translations ./
 
 ** TODO [#B] : Test DONE tasks
+*** DONE [#C] : new document : done bb
+*** DONE [#A] : replace dialog
+* TODO [#A] Tasks : Platform : Others 
+** TODO [#A] : ubuntu
+** TODO [#A] : qt5
+** TODO [#A] : qtmoko
+** TODO [#A] : rim/playbook
+** TODO [#B] : lighthouse port android/nescessitas
+** TODO [#C] : lighthouse port iOS
+** TODO [#B] : Test DONE tasks
 *** DONE [#A] : lighthouse port bb10
-** TODO : desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
+** TODO [#C]: desktop : http://doc.qt.nokia.com/4.7-snapshot/declarative-tutorials-extending-chapter6-plugins.html
 
 * TODO [#A] Tasks : Support
 * TODO [#B] Tasks : Features :
-** TODO [#B] : find / replace
+** TODO [#B] : find / replace ; done Qnx
 ** TODO [#B] : bookmark
 ** TODO [#C] : filemanager
 ** TODO [#C] : browser <ZogG_laptop> rzr: btw why in load it shows all types of files including jpg and it would be nice to have title with filename or something and maybe line numbers
@@ -38,10 +42,10 @@
 ** TODO [#A] : when choosing folder it should add / at the end of path if user want to change folder and type own name.
 ** TODO [#C] : new document
 * TODO [#B] Tasks : Platform : Harmattan
-** TODO [#A] : QGraphicsItem::ungrabMouse: not a mouse grabber on NokiaN950 N9
-** TODO [#B] : debian/links : /usr/bin/redak is not compatible with ovi
+** TODO [#C] : QGraphicsItem::ungrabMouse: not a mouse grabber on NokiaN950 N9
+** TODO [#C] : debian/links : /usr/bin/redak is not compatible with ovi
 
-** TODO [#C] : harmattan : uninstall : XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
+** TODO [#B] : harmattan : uninstall : XB-Maemo-Flags: visible  XB-MeeGo-Desktop-Entry-Name
 ** TODO [#C] : LocalThemeDaemonClient: Looking for assets in "/usr/local/opt/QtSDK/Simulator/Qt/gcc//harmattanthemes/blanco/meegotouch"
 
 * TODO [#B] Tasks : Bugs / Features / Wishes
@@ -53,14 +57,14 @@
 * TODO [#B] Tasks : Refactoring
 ** TODO [#C] Tabs vs pagestack ?
 * TODO [#C] Tasks : Platform : Symbian :
-** TODO [#A] : Test redak_install.sis on 808
+** TODO [#C] : Test redak_install.sis on 808
 ** TODO [#C] : Check sub tasks in DONE state
 *** DONE [#A] : support Qml
    http://developer.qt.nokia.com/wiki/Qt_4_7_4_Compatibility_Issues#a43452ddef3f92d193dbca3b139a01b2
 *** DONE [#A] : publish : https://publish.ovi.com/download_items/show/475539#item
 * TODO [#C] Tasks : Platform : Mer/Nemomible/SailfishOs
-** TODO [#A] : check if released in image
-** TODO [#A] : http://qt-project.org/wiki/How_to_Remove_Toolbar_from_MeeGo_Harmattan_Application
+** TODO [#B] : check if released in image
+** TODO [#B] : http://qt-project.org/wiki/How_to_Remove_Toolbar_from_MeeGo_Harmattan_Application
 ** http://harmattan-dev.nokia.com/docs/library/html/qt-components/qt-components-meego-pagestackwindow.html#showStatusBar-prop
 ** TODO [#B] : file:///usr/lib/qt4/imports/com/nokia/meego/ToolIcon.qml:66:9: QML QDeclarativeImage_QML_60: Failed to get image from provider: image://theme/icon-m-toolbar-close
 *** https://bugs.nemomobile.org/show_bug.cgi?id=81

@@ -8,8 +8,9 @@
 
 #include <QObject>
 
-
+#ifdef Q_OS_BLACKBERRY
 namespace bb { namespace cascades { class Application; }}
+#endif
 
 /*!
  * @brief Application pane object
@@ -21,7 +22,9 @@ class Redak
 {
     Q_OBJECT
 public:
+#ifdef Q_OS_BLACKBERRY
     Redak(bb::cascades::Application *app);
+#endif
     virtual ~Redak() {}
 };
 

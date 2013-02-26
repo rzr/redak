@@ -3,6 +3,17 @@
 #* @author: rzr@gna.org - rev: $Author: rzr$
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************/
+local_platform=not_qnx
+
+contains (CONFIG, blackberry) {
+
+APP_NAME = redak
+CONFIG += qt warn_on cascades10
+LIBS += -lbbcascadespickers
+LIBS += -lbbsystem
+include(config.pri)
+
+} else {
 
 TEMPLATE = app
 
@@ -215,8 +226,6 @@ symbian {
 #}
 
 } else { #windows?
-}
-
 
 #TODO: check if actually needed
 DEPLOYMENTFOLDERS+=qmlfiles
@@ -232,4 +241,10 @@ symbian {
     TARGET.UID3 += 0x20062276
 }
 
+}
+
+}
+
 #eof
+
+

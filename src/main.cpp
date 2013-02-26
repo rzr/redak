@@ -64,3 +64,7 @@ int main(int argc, char *argv[])
     return app->exec();
 }
 
+
+#ifdef Q_OS_BLACKBERRY
+using namespace bb::cascades;
+#endif

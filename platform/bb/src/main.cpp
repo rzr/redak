@@ -5,6 +5,7 @@
 
 #include "config.h"
 
+#ifdef Q_OS_BLACKBERRY
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/Application>
 #include <bb/cascades/pickers/FilePicker>
@@ -16,7 +17,7 @@
 #include <bb/cascades/pickers/FileType>
 //#include <bb/cascades/pickers/ViewMode>
 #include <bb/cascades/QmlDocument>
-
+#endif
 
 #include <QLocale>
 #include <QTranslator>
@@ -25,8 +26,9 @@
 #include "redak.h"
 #include "core.h"
 
+#ifdef Q_OS_BLACKBERRY
 using namespace bb::cascades;
-
+#endif
 
 Q_DECL_EXPORT int main(int argc, char **argv)
 {
@@ -53,3 +55,4 @@ Q_DECL_EXPORT int main(int argc, char **argv)
 	return Application::exec();
 	// when loop is exited the Application deletes the scene which deletes all its children (per qt rules for children)
 }
+

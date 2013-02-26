@@ -3,7 +3,7 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 
-var g_package = "redak-free";
+var g_package = "redak";
 
 var g_version = "0.7.2";
 

@@ -3,9 +3,19 @@
  * Copyright: See README file that comes with this distribution
  *****************************************************************************/
 
-var g_font_pixelSize = 26;
+var g_package = "redak";
 
-var g_verbose = false;
+var g_version = "0.7.2";
+
+var g_info = g_package + " : libre text editor\n\n"
+		+ "URL: http://rzr.online.fr/q/redak\n" + "License: GPL-3+"
+		+ "Contact: Phil Coval <rzr@gna.org>\n" + "Version: " + g_version;
++"\n";
+
+var g_debug = false;
+var g_verbose = g_debug;
+
+var g_font_pixelSize = 26;
 
 /// http://doc.qt.nokia.com/qt-components-symbian/qml-style.html
 var g_color_normal = "#00AAAAAA";
@@ -13,19 +23,12 @@ var g_color_bg_normal = "#00000000";
 var g_color_bg_pressed = "steelblue";
 var g_color_border = "gray";
 
-var g_version = "0.7.1" ;
-
-var g_info = "redak : libre text editor\n\nURL: http://rzr.online.fr/q/redak\nLicense: GPL-3+\nContact: Phil Coval <rzr@gna.org>\nVersion: " + g_version + "\n";
-
-
-function log(text)
-{
-    if ( g_verbose ) {
-        console.log(text);
-        //editPage.text += "\nlog: " + (text) + "\n"; //todo
-    }
+function log(text) {
+	if (g_verbose) {
+		console.log(text);
+		//editPage.text += "\nlog: " + (text) + "\n"; //todo
+	}
 }
-
 
 function image(filename)
 {

@@ -1,5 +1,5 @@
 #! /usr/bin/make -f
- #ident "$Id: $"
+#ident "$Id: $"
 #* @author: rzr@gna.org - rev: $Author: rzr$
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************
@@ -184,14 +184,20 @@ rule/install/platform/symbian: qml
 rule/diff/platform/bb: platform/bb
 	meld . $<
 	meld qml/${package}/meego/ $</assets/
-	meld qml/${package}/common/ $</assets/
+	meld qml/${package}/cascades/ $</assets/
+	meld qml/${package}/common/ qml/${package}/cascades/
 
 
 rule/install/platform/bb: ${package}.svg  mk-local.mk
 	find  platform/bb/ -iname "*.bar"
 #	platform/bb/arm/o.le-v7-g/${package}.bar
 #	platform/bb/arm/o.le-v7/${package}-0_7_1_0.bar
-	convert -resize 480x480  $< ${package}-480.png
+	convert -resize 480x480  $< doc/${package}-480.png
+#	convert  screenshot.png   -gravity center   -extent 1920x1186 ${package}.jpg
+#	convert  screenshot.png   -gravity center   -resize 90x90\! icon.png
+#	convert  screenshot.png   -gravity center   -resize 480x480\! icon.jpg
+	convert  screenshot.png   -gravity center   -resize 480x480\! doc/logo.png
+
 
 
 rule/clean/platform/bb: platform/bb
