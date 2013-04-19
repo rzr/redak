@@ -69,9 +69,7 @@ NavigationPane {
                 id: filePicker
                 type: FileType.Other //| FileType.Document
                 title: qsTr("Select file")
-                directories: [
-                    "/"
-                ]
+                directories: [ "/" ]
                 onFileSelected: {
                     filePath = selectedFiles[0];
                     Script.handlePath(filePath);
@@ -114,10 +112,12 @@ NavigationPane {
                 title: qsTr("Find string ?")
                 body: qsTr("will select the text, check to not replace it")
                 modality: SystemUiModality.Application
-                inputField.inputMode: SystemUiInputMode.Default
-                inputField.defaultText: qsTr("TODO")
-                //includeRememberMe: true //WORKAROUND
-                //rememberMeChecked: true
+
+                // inputField.inputMode: SystemUiInputMode.Default
+                // inputField.defaultText: qsTr("TODO")
+                // includeRememberMe: true //WORKAROUND
+                // rememberMeChecked: true
+
                 onFinished: {
                     if (result == SystemUiResult.ConfirmButtonSelection) {
                         var p = textArea.position; //WORKAROUND

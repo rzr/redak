@@ -36,10 +36,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TODO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>

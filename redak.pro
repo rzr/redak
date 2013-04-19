@@ -3,7 +3,7 @@
 #* @author: rzr@gna.org - rev: $Author: rzr$
 #* Copyright: See README file that comes with this distribution
 #*****************************************************************************/
-local_platform=not_qnx
+#local_platform=not_qnx
 
 contains (CONFIG, blackberry) {
 

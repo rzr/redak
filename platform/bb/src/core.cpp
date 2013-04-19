@@ -13,7 +13,7 @@
 
 Core::Core(QDeclarativeItem *parent)
 : QDeclarativeItem(parent)
-//: QDeclarativeExtensionPlugin(parent)
+// : QDeclarativeExtensionPlugin(parent)
 {
     FUNCT();
 }
@@ -87,7 +87,7 @@ QString Core::load(QString filename)
           content = stream.readAll();
           file.close();
 
-#if 0
+#if 1
           QString head(
         		  "# http://rzr.online.fr/q/redak\n"
         		  "# file edited with demo version of redak\n"

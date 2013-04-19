@@ -5,7 +5,7 @@
 
 var g_package = "redak-free";
 
-var g_version = "0.7.2";
+var g_version = "0.7.3";
 
 var g_info = g_package + " : libre text editor\n\n"
 		+ "URL: http://rzr.online.fr/q/redak\n" + "License: GPL-3+"

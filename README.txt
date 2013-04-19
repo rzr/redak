@@ -41,7 +41,7 @@ It has been tested on :
 * Symbian 3 : Nokia E7
 * Meego/Harmattan : Nokia n9, n950
 * Mer/Nemobile : Lenovo s103t
-* QNX/BB10 : DevAlphaB
+* QNX/BB10 : DevAlphaB, DevAlphaC
 
 Let me remind this legal statement :
 
