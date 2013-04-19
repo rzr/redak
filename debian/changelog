@@ -1,9 +1,9 @@
-redak (0.7.1-0) UNRELEASED; urgency=low
+redak (0.7.3-0) UNRELEASED; urgency=low
 
-  * Wip: bb10 / rim
+  * Wip: bb10 / rim : DevAlphaC (platform/bb)
   * add: find
 
- -- Philippe Coval <rzr@gna.org>  Sat, 12 Jan 2013 21:26:31 +0100
+ -- Philippe Coval <rzr@gna.org>  Sat, 20 Apr 2013 00:53:53 +0200
 
 redak (0.6.4-0) lucid; urgency=low
 

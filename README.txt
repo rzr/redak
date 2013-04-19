@@ -1,7 +1,7 @@
 Package: redak
 URL: http://rzr.online.fr/q/redak
 License: GPL-3+
-Contact: Philippe Coval <rzr@gna.org>
+Contact: Philippe Coval (mailto:rzr@gna.org)
 Summary: Libre Text Editor to edit or view plain text files
 KeyWords: text, editor, notes, txt, edit
 
@@ -77,8 +77,8 @@ check online
 
 Testers :
 
-* <virtuald> : n9 PR1.2 (30.2012.07....)
-* <itsnotabigtruck> : n9
-* <Sniper_swe> : n9
-* <jonni> : symbian
+* virtuald : n9 PR1.2 (30.2012.07....)
+* itsnotabigtruck : n9
+* Sniper_swe : n9
+* jonni : symbian
 

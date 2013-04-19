@@ -44,3 +44,6 @@ MANIFEST
 #*.autosave
 arm-p
 .#*
+redak
+*.pro.user.*
+

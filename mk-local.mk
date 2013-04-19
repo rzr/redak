@@ -7,7 +7,7 @@ default: help
 
 package?=redak
 #version?=0.0.0
-version?=0.7.1
+version?=0.7.3
 
 
 #TODO: upgrade with yours
@@ -189,7 +189,6 @@ rule/diff/platform/bb: platform/bb
 
 
 rule/install/platform/bb: ${package}.svg  mk-local.mk
-	find  platform/bb/ -iname "*.bar"
 #	platform/bb/arm/o.le-v7-g/${package}.bar
 #	platform/bb/arm/o.le-v7/${package}-0_7_1_0.bar
 	convert -resize 480x480  $< doc/${package}-480.png
@@ -197,7 +196,9 @@ rule/install/platform/bb: ${package}.svg  mk-local.mk
 #	convert  screenshot.png   -gravity center   -resize 90x90\! icon.png
 #	convert  screenshot.png   -gravity center   -resize 480x480\! icon.jpg
 	convert  screenshot.png   -gravity center   -resize 480x480\! doc/logo.png
-
+	find  platform/bb/ -iname "*.bar"
+	@echo "todo: upload platform/bb/arm/o.le-v7/redak-free-0_7_3_2.bar"
+	@echo "todo: https://appworld.blackberry.com/isvportal/home.do"
 
 
 rule/clean/platform/bb: platform/bb
